@@ -19,13 +19,14 @@ ui <- fluidPage(
                           p(strong("Our app is to analyze how happiness score is related 
                             to some factors behind it in all over the world during 2015 and 2016.")),
                           br(),
+                          img(src = "happiness.jpeg", height = 120, width = 200),
+                          br(),
                           br(),
                           h5("Developed by:"),
                           p("Yubo Ding"),
                           p("Xiaofu Li"),
                           p("Zehua Qiu"),
                           p("Yining Wang")
-                          
                         ),
                         mainPanel(
                           h2("Intoduction of our app"),
@@ -36,7 +37,7 @@ ui <- fluidPage(
                           p("- Are there any factors related to happiness score for a country?"),
                           p("- How factors change affect a country happiness score change between 2015 and 2016?"),
                           br(),
-                          h3("Data and Audience"),
+                          h3("Data"),
                           p("The dataset we will be working with is The World 
                             Happiness Report conducted since 2012 and still updated 
                             nowadays, but we will choose data conducted in 2015 
@@ -59,10 +60,6 @@ ui <- fluidPage(
                               href = "https://data.gov.ie/dataset/suggest/a4329b2f-c692-45a4-91a9-90e7060c4d67"),
                              "by searching keyword “world happiness report” 
                             on the Internet."),
-                          p("The target audience is the politicians. They will use 
-                            the world happiness report to inform their policy-making 
-                            decisions. Leading the politicians describe how measurements 
-                            of well-being can be used effectively to assess the progress of nations."),
                           br(),
                           h3("Varables in the datasets: "),
                           p(strong("- Country"),": Country name"),
@@ -81,29 +78,22 @@ ui <- fluidPage(
                             value of approximately zero over the whole set of countries"),
                           br(),
                           h3("Technical Description"),
-                          p("We will read in two static CSV files for our project. 
+                          p("We read in two static CSV files for our project. 
                             These files contain the happiness data in 2015 and 2016 
                             for 157 countries in the world. Since these datasets are 
-                            separately collected by year, we need to join these two 
+                            separately collected by year, we join these two 
                             datasets for our comparison and analysis. We noticed that 
                             the data for 2016 is one country less than the data for 
-                            2015, so we will have the data of that country only for 
-                            2015. In addition, data for 2015 has the variable of standard 
+                            2015, so we consider to plot countries in the specific year. 
+                            In addition, data for 2015 has the variable of standard 
                             error while data for 2016 has the variables of lower confidence 
-                            and upper confidence interval, so we will calculate the confidence 
+                            and upper confidence interval, so we calculate the confidence 
                             interval for both 2015 and 2016 before we join them into a data frame."),
-                          p("We will use the tidyverse library which will load ggplot2, dplyr, 
-                            tidyr, stringr and other packages to manage and visualize our data. 
-                            Also, we need the maps library to plot the happiness scores fitted 
-                            in the global map to visualize the difference between countries."),
-                          p("We will answer the following questions via the datasets: 
-                            Which region has the highest average happiness scores for each year? 
-                            Is there any correlation between happiness scores and other factors 
-                            (like economy, health, family, freedom, etc.)?"),
-                          p("We anticipate that our main challenge will be making clear and 
-                            motivated charts and plots to show the relationship between happiness 
-                            scores and other factors as well as compare the happiness score of 
-                            each country for different years."),
+                          p("We use the tidyverse library which will load ggplot2, dplyr, 
+                            tidyr, stringr, gghighlight and other packages to manage and visualize our data. 
+                            We use the maps library to plot the happiness scores fitted 
+                            in the global map to visualize the difference between countries.
+                            We host our app on ShinyApps.io."),
                           br(),
                           br(),
                           br()
@@ -112,7 +102,7 @@ ui <- fluidPage(
              ),
              
             # Tab 1 Happiness bar by region
-             tabPanel("Happiness Score by Region",
+             tabPanel("Happiness by Region",
                       sidebarLayout(
                         sidebarPanel(
                           ## help text above the side bar
@@ -141,19 +131,21 @@ ui <- fluidPage(
              
              
                  # Tab 2 Map
-                 tabPanel("Happiness Score World Map",
+                 tabPanel("Map",
                           sidebarLayout(
                             sidebarPanel(
                               ## help text above the side bar
-                              helpText("This will output a world map with selected 
-                                      year and index. Select which year and which index 
+                              helpText("This will output a world map of happiness score 
+                                      and factor index with selected 
+                                      year and factor. 
+                                      Select which year and which index 
                                       do you want to plot"),
                               ## Let user choose which month to select
                               radioButtons("year2", label = "Select a year",
                                            choices = c(2015,2016),
                                            selected = 2015),
                               ## Let user choose which shape of the UFO to select
-                              selectInput("index", label = "Select a index",
+                              selectInput("index", label = "Select a factor",
                                           choices = list("Health" = "Health",
                                                          "Freedom" = "Freedom",
                                                          "Family" = "Family",
@@ -175,10 +167,10 @@ ui <- fluidPage(
                  tabPanel("Factors Scartter Plot",
                           sidebarLayout(
                             sidebarPanel(
-                              helpText("This will output a scartter plot with 
-                              selected year, factor and country. 
-                              Select which year which 
-                              factor and which country do you want to plot"),
+                              helpText("This will output a scartter plot of happiness 
+                                      score vs factor with selected year, factor and country. 
+                                      Select which year which factor and which country do 
+                                      you want to plot"),
                               # Select a year
                               radioButtons(inputId = "year", label = strong("Year"),
                                            choices = c(2015, 2016), selected = 2015), 
@@ -201,7 +193,7 @@ ui <- fluidPage(
                  ),
              
              # Tab 4 Factors changes between year
-             tabPanel("Factors bar chart",
+             tabPanel("Factors Change",
                       sidebarLayout(
                         sidebarPanel(
                           helpText("This will output a bar chart and a table of factors 
@@ -220,8 +212,47 @@ ui <- fluidPage(
                           br()
                         )
                       )
-             )
-                 
+             ),
+            
+            # Tab 5 Summary 
+            tabPanel("Summary",
+              sidebarLayout(
+                sidebarPanel(
+                  h2("Some Analysis"),
+                  br(),
+                  p("Finally, we expect you can learn these information in the aspect of 
+                    region and factors that related to happiness score from our app."),
+                  br()
+                ),
+                mainPanel(
+                  h2("Summary about the data"),
+                  br(),
+                  h4("Region"),
+                  p("From Happiness Score by Region bar chart we see that 
+                    in both 2015 and 2016, the rank of average happiness score by 
+                    region does not change. Rank from the highest to the lowest: 
+                    Australia andNew Zealand, North America, Western Europe, 
+                    Latin America and Caribbean, Eastern Asia, Middle East and 
+                    Northern Africa, Central and Eastern Europe, Southeastern Asia, 
+                    Southern Asia, and Sub-Saharan Africa."),
+                  br(),
+                  h4("Factors"),
+                  p("From the Map and the Scartter Plot we see that factors 
+                    Economy, Health, Family have strong correlation with happiness score, 
+                    while Freedom has moderate correlation, and Trust and Generosity 
+                    have weak correlation. Economy has the highest correlation with 
+                    happiness score, which means a country's economy most affect 
+                    the happiness of its citizens. "),
+                  p("From the change index of factors between two years bar chart we see that 
+                    only one factor increase or decrease does not impact the happiness score. 
+                    But in general, increase in economy, health and family index will increase 
+                    the happiness score and its rank."),
+                  br(),
+                  br(),
+                  br()
+                )
+              )
+            )
                  
 ))
 

@@ -245,6 +245,7 @@ server <- function(input, output, session) {
   hp_Country <- reactive({
     hp %>%
       filter(Country == input$country2)
+    
   })
   
   ## output the factor bar chart
