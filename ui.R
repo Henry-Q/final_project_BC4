@@ -3,6 +3,7 @@ library(tidyverse)
 library(stringr)
 library(gghighlight)
 library(maps)
+library(rsconnect)
 
 # data
 hp <- read.csv('data/joined_data.csv') 

@@ -3,6 +3,7 @@ library(tidyverse)
 library(stringr)
 library(gghighlight)
 library(maps)
+library(rsconnect)
 
 
 server <- function(input, output, session) {
