@@ -218,7 +218,7 @@ ui <- fluidPage(
             tabPanel("Summary",
               sidebarLayout(
                 sidebarPanel(
-                  h2("Some Analysis"),
+                  h3("Some Analysis"),
                   br(),
                   p("Finally, we expect you can learn these information in the aspect of 
                     region and factors that related to happiness score from our app."),
@@ -227,7 +227,7 @@ ui <- fluidPage(
                 mainPanel(
                   h2("Summary about the data"),
                   br(),
-                  h4("Region"),
+                  h4("Insight"),
                   p("From Happiness Score by Region bar chart we see that 
                     in both 2015 and 2016, the rank of average happiness score by 
                     region does not change. Rank from the highest to the lowest: 
@@ -235,8 +235,6 @@ ui <- fluidPage(
                     Latin America and Caribbean, Eastern Asia, Middle East and 
                     Northern Africa, Central and Eastern Europe, Southeastern Asia, 
                     Southern Asia, and Sub-Saharan Africa."),
-                  br(),
-                  h4("Factors"),
                   p("From the Map and the Scartter Plot we see that factors 
                     Economy, Health, Family have strong correlation with happiness score, 
                     while Freedom has moderate correlation, and Trust and Generosity 
@@ -247,6 +245,34 @@ ui <- fluidPage(
                     only one factor increase or decrease does not impact the happiness score. 
                     But in general, increase in economy, health and family index will increase 
                     the happiness score and its rank."),
+                  br(),
+                  h4("Data Quality"),
+                  p("In general, the data we used is reasonable and could provide complex 
+                    insight regarding to the world happiness score. However, some places 
+                    that belong to certain countries are extracted out, which makes the 
+                    result in those places unrepresentative. For example, Hongkong and 
+                    Taiwan are places belong to China, but the collector extracted out 
+                    and calculated their individual happiness score in the dataset. 
+                    The economy, health and other standard are not enough to represent 
+                    a country, which makes the result in these places biased. This issues 
+                    could also cause harm to population living in those region because 
+                    split their hometown from their nation is contradicting the patriotism. 
+                    Despite this issue, the quality of the data is decent."),
+                  br(),
+                  h4("Future Ideas and Implication"),
+                  p("The results obtained from this project could be used by politicians 
+                    to get an insight about the happiness level around the world and 
+                    make policy decision based on it. For example, if the happiness 
+                    rank in a country dropped drastically compare to previous year 
+                    and the economy decreased the most among all the factors, government 
+                    should think about some solution to boost the GDP to improve happiness 
+                    level. To make this project more helpful and convincing, maybe data 
+                    from a longer period, like 20 years, should be analyzed. So that 
+                    a more obvious trend of the rise and drop of happiness score 
+                    could be obtained. There is no much difference between scores 
+                    from 2015 and 2016 data, but if the data is conducted in a longer 
+                    period, viewers could better tell the trend of happiness level in 
+                    each country."),
                   br(),
                   br(),
                   br()
