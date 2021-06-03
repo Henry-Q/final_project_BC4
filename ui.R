@@ -3,7 +3,6 @@ library(tidyverse)
 library(stringr)
 library(gghighlight)
 library(maps)
-library(rsconnect)
 
 # data
 hp <- read.csv('data/joined_data.csv') 
@@ -232,7 +231,7 @@ ui <- fluidPage(
                   p("From Happiness Score by Region bar chart we see that 
                     in both 2015 and 2016, the rank of average happiness score by 
                     region does not change. Rank from the highest to the lowest: 
-                    Australia andNew Zealand, North America, Western Europe, 
+                    Australia and New Zealand, North America, Western Europe, 
                     Latin America and Caribbean, Eastern Asia, Middle East and 
                     Northern Africa, Central and Eastern Europe, Southeastern Asia, 
                     Southern Asia, and Sub-Saharan Africa."),
