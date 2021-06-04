@@ -192,6 +192,16 @@ server <- function(input, output, session) {
     return(p)
   })
   
+  output$info <- renderText({
+    if(is.null(input$plot_click)){
+      paste0("Click a point in the scartter plot to find the Happiness score and Factor index.")
+    } else{
+      t1 <- paste0("Happiness score = ", round(input$plot_click$x, digits = 3))
+      t2 <- paste0("\nFactor index = ", round(input$plot_click$y, digits = 3))
+      return(paste(t1, t2))
+    }
+  })
+  
   ## output scartter plot description 
   output$desc <- renderText({
     # calculate the correlation

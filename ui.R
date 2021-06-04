@@ -14,7 +14,7 @@ ui <- fluidPage(
              tabPanel("Intro",
                       sidebarLayout(
                         sidebarPanel(
-                          h2("Happiness app"),
+                          h3("Happiness app"),
                           br(),
                           p(strong("Our app is to analyze how happiness score is related 
                             to some factors behind it in all over the world during 2015 and 2016.")),
@@ -170,7 +170,8 @@ ui <- fluidPage(
                               helpText("This will output a scartter plot of happiness 
                                       score vs factor with selected year, factor and country. 
                                       Select which year which factor and which country do 
-                                      you want to plot"),
+                                      you want to plot. You can click the point in the plot 
+                                       to find the happiness score and factor index."),
                               # Select a year
                               radioButtons(inputId = "year", label = strong("Year"),
                                            choices = c(2015, 2016), selected = 2015), 
@@ -183,7 +184,8 @@ ui <- fluidPage(
                               uiOutput("country")
                             ),
                             mainPanel(
-                              plotOutput(outputId = "scartterPlot"),
+                              plotOutput(outputId = "scartterPlot", click = "plot_click"),
+                              verbatimTextOutput("info"),
                               br(),
                               textOutput(outputId = "desc"),
                               br(),
